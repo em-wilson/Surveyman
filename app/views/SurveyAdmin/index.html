@@ -1,0 +1,21 @@
+#{extends 'admin.html' /}
+
+<h1>Surveys</h1>
+
+<ul id="entityList">
+#{list items:surveys, as:'survey'}
+    <li class="survey ${survey_parity}">
+        ${survey.title}
+        <ul class="options">
+            <li><a href="@{SurveyAdmin.view(survey.id)}" class="view">View</a></li>
+            <li><a href="@{SurveyAdmin.form(survey.id)}" class="edit">Edit</a></li>
+        </ul>
+    </li>
+#{/list}
+</ul>
+
+<p id="newSurvey" >
+    <a href="@{SurveyAdmin.form()}"><span>+</span> new survey</a>
+</p>
+
+<br class="clear" />

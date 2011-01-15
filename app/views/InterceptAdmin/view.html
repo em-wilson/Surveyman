@@ -1,0 +1,31 @@
+#{extends 'admin.html' /}
+
+<h1>Intercept Settings</h1>
+
+<p>
+    Survey:
+    <a href="@{SurveyAdmin.view(intercept.survey.id)}">
+        ${intercept.survey.title}
+    </a>
+</p>
+
+<p>
+    UUID:
+    ${intercept.uuid}
+</p>
+
+<p>
+    Frequency:
+    ${intercept.frequency}
+</p>
+
+<p>
+    Total Appearances:
+    ${appearances.size()}
+</p>
+
+<h2>Test Intercept</h2>
+
+<p>
+    <a href="@{InterceptAdmin.test(intercept.id)}">Test</a>
+</p>

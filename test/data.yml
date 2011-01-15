@@ -1,0 +1,36 @@
+# you describe your data using the YAML notation here
+# and then load them using Fixtures.load("data.yml")
+
+# Test data
+
+# you describe your data using the YAML notation here
+# and then load them using Fixtures.load("data.yml")
+
+# Test data
+
+User(bob):
+    email:          bob@gmail.com
+    password:       secret
+    firstName:      Bob
+    lastName:       McFadden
+    isAdmin:        true
+
+User(jeff):
+    email:          jeff@gmail.com
+    password:       secret
+    firstName:      Jeff
+    lastName:       Tweed
+
+Survey(loblawsSurvey):
+    title:          Loblaws Survey
+    createdAt:      2010-06-07
+    owner:          jeff
+    content:        >
+                    Rar
+
+Intercept(loblawsIntercept):
+    survey:         loblawsSurvey
+    uuid:           d8141a42-18c2-48f0-8f97-2f6c56d6a132
+    label:          OnEntry Loblaws
+    frequency:      95.2
+    createdAt:      2010-06-07

@@ -1,0 +1,44 @@
+#{extends 'admin.html' /}
+
+#{ifnot survey?.id}
+    <h3>Write, <span>a new survey</span></h3>
+#{/ifnot}
+#{else}
+    <h3>Edit Survey</h3>
+#{/else}
+
+#{form @save(survey?.id)}
+
+    #{ifErrors}
+        <p class="error">
+            Please correct these errors.
+        </p>
+    #{/ifErrors}
+
+    <p>
+        #{field 'title'}
+        <label>
+            Survey title:
+            <br />
+            <input type="text" name="${field.name}"
+                value="${survey?.title}" class="${field.errorClass}" />
+        </label>
+        #{/field}
+    </p>
+
+    <p>
+        #{field 'content'}
+        <label>
+            Survey Description:
+            <br />
+            <textarea name="${field.name}"
+                class="${field.errorClass}">${survey?.content}</textarea>
+        </label>
+        #{/field}
+    </p>
+
+    <p>
+        <input type="submit" value="Publish this Survey" />
+    </p>
+
+#{/form}

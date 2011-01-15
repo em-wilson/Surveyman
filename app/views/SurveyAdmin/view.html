@@ -1,0 +1,36 @@
+#{extends 'admin.html' /}
+
+<h1>View Survey</h1>
+
+<h2>${survey.title}</h2>
+
+<p>${survey.content}</p>
+
+<h1>Survey Questions</h1>
+<ul id="entityList">
+#{list items:parts, as:'part'}
+    <li class="part ${part_parity}">
+        ${part.title}
+        <ul class="options">
+            <li><a href="@{InterceptAdmin.view(part.id)}" class="view">View</a></li>
+            <li><a href="@{InterceptAdmin.form(part.id)}" class="edit">Edit</a></li>
+        </ul>
+    </li>
+#{/list}
+</ul>
+
+<p><a href="@{SurveyAdmin.question(survey.id)}">New Question</p>
+
+<h1>Survey Intercepts</h1>
+
+<ul id="entityList">
+#{list items:intercepts, as:'intercept'}
+    <li class="intercept ${intercept_parity}">
+        ${intercept.label}
+        <ul class="options">
+            <li><a href="@{InterceptAdmin.view(intercept.id)}" class="view">View</a></li>
+            <li><a href="@{InterceptAdmin.form(intercept.id)}" class="edit">Edit</a></li>
+        </ul>
+    </li>
+#{/list}
+</ul>

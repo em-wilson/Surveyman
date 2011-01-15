@@ -1,0 +1,23 @@
+#{extends 'admin.html' /}
+
+<p><strong>Welcome ${user}</strong></p>
+<!--<h3>Welcome ${user}, <span>you have written ${surveys.size() ?: 'no'} ${surveys.pluralize('survey', 'surveys')} so far</span></h3>-->
+
+<div class="dashboard">
+    <h1>Surveys</h1>
+    #{list items:surveys, as:'survey'}
+        <p class="survey ${survey_parity}">
+            <a href="@{SurveyAdmin.view(survey.id)}">${survey.title}</a>
+        </p>
+    #{/list}
+
+    <p id="newSurvey" >
+        <a href="@{SurveyAdmin.form()}"><span>+</span> new survey</a>
+    </p>
+
+    <p id="moreSurvey">
+        <a href="@{SurveyAdmin.index()}">[show all surveys]</a>
+    </p>
+</div>
+
+<br class="clear" />

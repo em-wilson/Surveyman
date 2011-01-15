@@ -1,0 +1,39 @@
+#{fixture delete:'all', load:'data.yml' /}
+
+#{selenium}
+    clearSession()
+
+    // Open the home page, and check that no error occured
+    open('/')
+    waitForPageToLoad(1000)
+    assertNotTitle('Application error')
+#{/selenium}
+
+#{fixture delete:'all', load:'data.yml' /}
+
+#{selenium 'Check home page'}
+    clearSession()
+
+    // Open the home page
+    open('/')
+
+    // Check that the login button is present as we are logged out
+    // by default
+    assertTextPresent('Log in to write something')
+#{/selenium}
+
+#{selenium 'Check login fail'}
+    clearSession()
+
+    // Open the login page
+    open('/admin')
+
+    waitForPageToLoad(1000)
+    assertTitle('Login')
+
+    type('username', 'unknownuser@gmail.com')
+    type('password', 'secret')
+    clickAndWait('signin')
+
+    assertTextPresent('Oops, unknown username or password.')
+#{/selenium}

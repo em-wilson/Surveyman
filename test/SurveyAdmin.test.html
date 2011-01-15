@@ -1,0 +1,20 @@
+#{fixture delete:'all', load:'data.yml' /}
+
+#{selenium 'All Surveys'}
+    clearSession()
+
+    // Open the home page, and check that no error occured
+    open('/admin')
+    waitForPageToLoad(1000)
+    assertTitle('Login')
+
+    type('username', 'bob@gmail.com')
+    type('password', 'secret')
+    clickAndWait('signin')
+
+
+    open('/admin/surveys')
+    waitForPageToLoad(1000)
+
+    assertTextPresent('Add Survey')
+#{/selenium}

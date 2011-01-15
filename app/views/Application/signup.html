@@ -1,0 +1,43 @@
+#{extends 'main.html' /}
+#{set title:'Signup' /}
+
+<h1>Surveyman Signup</h1>
+
+#{form @save()}
+<p>
+    #{field 'email'}
+    <label>
+        Email:
+        <br />
+        <input type="text" name="${field.email}"
+            value="${user?.email}" class="${field.errorClass}" />
+    </label>
+    #{/field}
+</p>
+
+<p>
+    #{field 'first_name'}
+    <label>
+        First Name:
+        <br />
+        <input type="text" name="${field.first_name}"
+            value="${user?.first_name}" class="${field.errorClass}" />
+    </label>
+    #{/field}
+</p>
+
+<p>
+    #{field 'last_name'}
+    <label>
+        Last Name:
+        <br />
+        <input type="text" name="${field.last_name}"
+            value="${user?.last_name}" class="${field.errorClass}" />
+    </label>
+    #{/field}
+</p>
+
+<p>
+    <input type="submit" value="Register User" />
+</p>
+#{/form}

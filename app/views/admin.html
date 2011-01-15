@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title>Administration</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        #{get 'moreStyles' /}
+        <link rel="stylesheet" type="text/css" media="screen"
+                href="@{'/public/stylesheets/main.css'}" />
+        <link rel="shortcut icon" type="image/png"
+                href="@{'/public/images/favicon.png'}" />
+        <script src="@{'/public/javascripts/jquery-1.4.2.min.js'}"></script>
+    </head>
+    <body id="admin">
+
+        <div id="header">
+            <ul id="tools">
+                <li>
+                    <a href="@{Secure.logout()}">Log out</a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="main">
+            #{secure.check 'admin'}
+            <ul id="adminMasterMenu">
+                <li>Master Controls:</li>
+                <li class="${request.controller == 'Users' ? 'selected' : ''}">
+                    <a href="@{Users.list()}">Users</a>
+                </li>
+                <li class="${request.controller == 'Surveys' ? 'selected' : ''}">
+                    <a href="@{Surveys.list()}">Surveys</a>
+                </li>
+                <li class="${request.controller == 'Intercepts' ? 'selected' : ''}">
+                    <a href="@{Intercepts.list()}">Intercepts</a>
+                </li>
+            </ul>
+            #{/secure.check}
+            <ul id="adminMenu">
+                <li class="${request.controller == 'Admin' ? 'selected' : ''}">
+                    <a href="@{Admin.index()}">Home</a>
+                </li>
+                <li class="${request.controller == 'SurveyAdmin' ? 'selected' : ''}">
+                    <a href="@{SurveyAdmin.index()}">Surveys</a>
+                </li>
+                <li class="${request.controller == 'InterceptAdmin' ? 'selected' : ''}">
+                    <a href="@{InterceptAdmin.index()}">Intercepts</a>
+                </li>
+            </ul>
+            #{doLayout /}
+        </div>
+
+        <p id="footer">
+            Surveyman is a surveying application built with the
+            <a href="http://www.playframework.org">Play framework</a>.
+        </p>
+
+    </body>
+    <script src="@{'/public/javascripts/entitylist.js'}"></script>
+</html>

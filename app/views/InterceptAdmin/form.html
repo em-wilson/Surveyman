@@ -1,0 +1,58 @@
+#{extends 'admin.html' /}
+
+#{ifnot model?.id}
+    <h3>New Intercept</h3>
+#{/ifnot}
+#{else}
+    <h3>Edit Intercept</h3>
+#{/else}
+
+#{form @save(model?.id)}
+
+    #{ifErrors}
+        <p class="error">
+            Please correct these errors.
+        </p>
+    #{/ifErrors}
+
+    <p>
+        #{field 'survey_id'}
+        <label>
+            Survey:
+            <br />
+            <select name="${field.name}">
+            #{list items:surveys, as:'survey'}
+                <option value="${survey.id}">${survey.title}</option>
+            #{/list}
+            </select>
+        </label>
+        #{/field}
+    </p>
+
+    <p>
+        #{field 'label'}
+        <label>
+            Intercept title:
+            <br />
+            <input type="text" name="${field.name}"
+                value="${model?.label}" class="${field.errorClass}" />
+        </label>
+        #{/field}
+    </p>
+
+    <p>
+        #{field 'frequency'}
+        <label>
+            Frequency:
+            <br />
+            <input type="text" name="${field.name}"
+                value="${model?.frequency}" class="${field.errorClass}" />
+        </label>
+        #{/field}
+    </p>
+
+    <p>
+        <input type="submit" value="Publish this Intercept" />
+    </p>
+
+#{/form}

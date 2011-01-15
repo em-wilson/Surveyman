@@ -1,0 +1,60 @@
+#{fixture delete:'all', load:'data.yml' /}
+
+#{selenium 'Log In'}
+    clearSession()
+
+    // Open the home page, and check that no error occured
+    open('/admin')
+    waitForPageToLoad(1000)
+    assertTitle('Login')
+
+    type('username', 'jeff@gmail.com')
+    type('password', 'secret')
+    clickAndWait('signin')
+
+    assertTextPresent('Log out')
+#{/selenium}
+
+#{selenium 'Intercept List'}
+    open('/admin')
+    waitForPageToLoad(1000)
+
+    clickAndWait('link=*Intercepts*')
+
+    assertTextPresent('OnEntry Loblaws')
+#{/selenium}
+
+#{selenium 'Test Intercept Security'}
+    clearSession()
+
+    open('/admin/intercept')
+    waitForPageToLoad(1000)
+
+    assertTitle('Login')
+#{/selenium}
+
+#{selenium 'Intercept View'}
+    clearSession()
+
+    open('/admin')
+    waitForPageToLoad(1000)
+    assertTitle('Login')
+
+    type('username', 'jeff@gmail.com')
+    type('password', 'secret')
+    clickAndWait('signin')
+
+    clickAndWait('link=*Intercepts*')
+
+    assertTextPresent('OnEntry Loblaws')
+
+    clickAndWait('link=*View*')
+
+    assertTextPresent('Loblaws Survey')
+    assertTextPresent('Frequency: 95.2')
+
+    clickAndWait('link=*Test*')
+
+    assertTextPresent('Test Intercept')
+#{/selenium}
+

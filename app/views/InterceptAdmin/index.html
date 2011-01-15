@@ -1,0 +1,21 @@
+#{extends 'admin.html' /}
+
+<h1>Intercepts</h1>
+
+<ul id="entityList">
+#{list items:intercepts, as:'intercept'}
+    <li class="intercept ${intercept_parity}">
+        ${intercept.label}
+        <ul class="options">
+            <li><a href="@{InterceptAdmin.view(intercept.id)}" class="view">View</a></li>
+            <li><a href="@{InterceptAdmin.form(intercept.id)}" class="edit">Edit</a></li>
+        </ul>
+    </li>
+#{/list}
+</ul>
+
+<p id="newIntercept" >
+    <a href="@{InterceptAdmin.form()}"><span>+</span> new intercept</a>
+</p>
+
+<br class="clear" />
