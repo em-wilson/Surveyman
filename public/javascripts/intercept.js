@@ -2,21 +2,26 @@ function SWIntercept(param)
 {
     var defaults = {
       'type' : null,
+      overlay: {
+      	css: {
+	      	width: '100%',
+	      	height: '100%',
+	      	'background-color': '#0f0',
+	      	opacity: '0.5',
+	      	position: 'fixed',
+	      	top: 0,
+	      	display: 'none'
+      	}
+      },
       'direction' : null
     };
-    this.settings = jQuery.extend(defaults, param);
+    this.settings = jQuery.extend(true, defaults, param);
 }
 
 SWIntercept.prototype.createOverlay = function()
 {
     $overlay = jQuery("<div>&nbsp;</div>");
-    $overlay.css('width', '100%');
-    $overlay.css('height', '100%');
-    $overlay.css('background-color', '#0f0');
-    $overlay.css('opacity', '0.5');
-    $overlay.css('position', 'fixed');
-    $overlay.css('top', '0');
-    $overlay.css('display', 'none');
+    $overlay.css(this.settings.overlay.css);
     $overlay.click(function(){
         $(this).fadeOut('fast', function() {
 		$(this).remove();
@@ -29,7 +34,7 @@ SWIntercept.prototype.createOverlay = function()
 
 SWIntercept.prototype.createDiv = function(holder,css)
 {
-    var $div = jQuery("<div>Intercept Div</div>");
+    var $div = jQuery("<div><h1>Intercept Div</h1></div>");
     if ( this.settings.styles ) {
         for ( var key in this.settings.styles ) {
             var value = this.settings.styles[key];
@@ -44,6 +49,7 @@ SWIntercept.prototype.createDiv = function(holder,css)
     var div_height = $div.height();
     var div_top = (doc_height / 2) - (div_height / 2);
     var div_left = (doc_width /2) - ($div.width() /2);
+    $div.css('opacity', '1');
     $div.css('top', div_top + 'px');
     $div.css('left', div_left + 'px');
     if ( css ) {
@@ -84,32 +90,3 @@ SWIntercept.prototype.run = function()
             break;
     }
 };
-
-function doFadein()
-{
-    var intercept = new SWIntercept({
-        type: 'fade',
-        styles: {
-            'background-color' : '#ffffff',
-            'width' : '150px',
-            'height' : '150px',
-        }
-    });
-
-    intercept.run();
-}
-
-function doSlideup()
-{
-    var intercept = new SWIntercept({
-        type: 'slide',
-        direction: 'up',
-        styles: {
-            'background-color' : '#ffffff',
-            'width' : '150px',
-            'height' : '150px',
-        }
-    });
-
-    intercept.run();
-}

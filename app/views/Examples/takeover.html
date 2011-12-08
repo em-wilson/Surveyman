@@ -3,7 +3,7 @@
 
 <h1>Surveyman</h1>
 
-<h2>Slide-Up Intercept Example</h2>
+<h2>Takeover Intercept Example</h2>
 
 <p>
     <a href="#" id="interceptDemo">
@@ -17,8 +17,13 @@
 $(document).ready(function() {
 	$("#interceptDemo").click(function() {
 	    var intercept = new SWIntercept({
-	        type: 'slide',
-	        direction: 'up',
+	        type: 'fade',
+	        overlay: {
+	        	image: '@{'/public/images/takeoverbg.png'}',
+	        	css: {
+	        		'background-color': '#f00'
+        		}
+	        },
 	        styles: {
 	            'background-color' : '#ffffff',
 	            'width' : '150px',
@@ -29,9 +34,5 @@ $(document).ready(function() {
 	    intercept.run();
 	    return false;
 	});
-
-  $.getJSON('http://localhost:9000/intercept/accounts', function(accounts) {
-    //alert(accounts.frequency);
-  });
 });
 </script>

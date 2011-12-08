@@ -6,9 +6,32 @@
 <h2>Fade-In Intercept Example</h2>
 
 <p>
-    <a href="#" onclick="doFadein();return false;">
+    <a href="#" id="interceptDemo">
         Click to activate
     </a>
 </p>
 
 <script src="@{'/public/javascripts/intercept.js'}" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#interceptDemo").click(function() {
+	    var intercept = new SWIntercept({
+	        type: 'fade',
+	        overlay: {
+	        	css: {
+	        		'background-color': '#f00'
+        		}
+	        },
+	        styles: {
+	            'background-color' : '#ffffff',
+	            'width' : '150px',
+	            'height' : '150px',
+	        }
+	    });
+	
+	    intercept.run();
+	    return false;
+	});
+});
+</script>

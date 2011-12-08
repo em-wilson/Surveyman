@@ -8,6 +8,9 @@ GET     /                                       Application.index
 # Intercept pages
 *       /intercept/{uuid}/settings                InterceptController.settings
 
+# Intercept TEST API
+GET		/intercept/accounts						InterceptController.accounts
+
 # Signup pages
 GET     /signup                                 Application.signup
 POST    /signup                                 Application.save
