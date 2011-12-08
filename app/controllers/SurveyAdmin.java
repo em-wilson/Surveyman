@@ -58,6 +58,7 @@ public class SurveyAdmin extends Controller {
         }
         if ( null != questionId ) {
             SurveyPart question = SurveyPart.findById(questionId);
+            render(question);
         } else {
             render("@newquestion");
         }

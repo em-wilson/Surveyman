@@ -18,15 +18,16 @@ SWIntercept.prototype.createOverlay = function()
     $overlay.css('top', '0');
     $overlay.css('display', 'none');
     $overlay.click(function(){
-        $(this).fadeOut('fast');
-        //$(this).remove();
+        $(this).fadeOut('fast', function() {
+		$(this).remove();
+	});
     });
     jQuery("body").append($overlay);
     $overlay.fadeIn('fast');
     return $overlay;
 }
 
-SWIntercept.prototype.createDiv = function(holder)
+SWIntercept.prototype.createDiv = function(holder,css)
 {
     var $div = jQuery("<div>Intercept Div</div>");
     if ( this.settings.styles ) {
@@ -45,15 +46,37 @@ SWIntercept.prototype.createDiv = function(holder)
     var div_left = (doc_width /2) - ($div.width() /2);
     $div.css('top', div_top + 'px');
     $div.css('left', div_left + 'px');
+    if ( css ) {
+	$div.css(css);
+    }
+    return $div;
+};
+
+SWIntercept.prototype.createSlideDiv = function($container)
+{
+    var doc_height = $(document).height()-$("body").offset().top;
+    $div = this.createDiv($container, {
+	top: doc_height + 'px'
+    });
+    $div.animate({top:'150px'});
+    $div.click(function(){
+	$(this).fadeOut(function() {
+	    $(this).remove();
+	});
+    });
 };
 
 SWIntercept.prototype.run = function()
 {
     switch ( this.settings.type )
     {
-        case "slide":
+        case "fade":
             var holder = this.createOverlay();
             this.createDiv(holder);
+            break;
+
+        case "slide":
+	    this.createSlideDiv($('body'));
             break;
 
         default:
@@ -61,6 +84,20 @@ SWIntercept.prototype.run = function()
             break;
     }
 };
+
+function doFadein()
+{
+    var intercept = new SWIntercept({
+        type: 'fade',
+        styles: {
+            'background-color' : '#ffffff',
+            'width' : '150px',
+            'height' : '150px',
+        }
+    });
+
+    intercept.run();
+}
 
 function doSlideup()
 {

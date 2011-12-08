@@ -58,7 +58,7 @@ public class InterceptAdmin extends Controller {
             Survey survey = Survey.findById(survey_id);
             
             // Create intercept
-            User owner = User.find("byEmail", Security.connected()).first();
+            //User owner = User.find("byEmail", Security.connected()).first();
             model = new Intercept( Intercept.getUUID(), survey, frequency, label);
         } else {
             // Retrieve intercept

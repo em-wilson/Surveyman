@@ -7,7 +7,7 @@ public class BasicTest extends UnitTest {
 
     @Before
     public void set() {
-        Fixtures.deleteAll();
+        Fixtures.deleteAllModels();
     }
 
     @Test
@@ -75,7 +75,7 @@ public class BasicTest extends UnitTest {
 
     @Test
     public void fullTest() {
-        Fixtures.load("data.yml");
+        Fixtures.loadModels("data.yml");
 
         // Count things
         assertEquals(2, User.count());

@@ -12,4 +12,8 @@ public class Examples extends Controller {
     public static void slideup() {
         render();
     }
+    
+    public static void fadein() {
+    	render();
+    }
 }
