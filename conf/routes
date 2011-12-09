@@ -5,6 +5,9 @@
 # Home page
 GET     /                                       Application.index
 
+# Analyzer API
+GET		/analyzer/track							AnalyzerAPI.track
+
 # Intercept pages
 *       /intercept/{uuid}/settings                InterceptController.settings
 

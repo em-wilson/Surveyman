@@ -1,6 +1,7 @@
-function SWIntercept(param)
+function SWIntercept(params)
 {
     var defaults = {
+      frequency : 0,
       'type' : null,
       overlay: {
       	css: {
@@ -15,7 +16,7 @@ function SWIntercept(param)
       },
       'direction' : null
     };
-    this.settings = jQuery.extend(true, defaults, param);
+    this.settings = jQuery.extend(true, defaults, params);
 }
 
 SWIntercept.prototype.createOverlay = function()
@@ -53,7 +54,7 @@ SWIntercept.prototype.createDiv = function(holder,css)
     $div.css('top', div_top + 'px');
     $div.css('left', div_left + 'px');
     if ( css ) {
-	$div.css(css);
+		$div.css(css);
     }
     return $div;
 };
@@ -72,8 +73,13 @@ SWIntercept.prototype.createSlideDiv = function($container)
     });
 };
 
-SWIntercept.prototype.run = function()
+SWIntercept.prototype.run = function(settingsOverride)
 {
+	if ( settingsOverride ) {
+		this.settings
+			= jQuery.extend(true, this.settings, settingsOverride );
+ 	}
+	
     switch ( this.settings.type )
     {
         case "fade":
@@ -82,8 +88,8 @@ SWIntercept.prototype.run = function()
             break;
 
         case "slide":
-	    this.createSlideDiv($('body'));
-            break;
+		    this.createSlideDiv($('body'));
+	            break;
 
         default:
             alert("Not implemented");
